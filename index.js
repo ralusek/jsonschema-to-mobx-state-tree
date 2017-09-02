@@ -15,7 +15,7 @@ module.exports = (types) => {
       return types.string;
     },
     object: (node, meta) => {
-      Object.keys(meta.childObjectProperties).length ?
+      return Object.keys(meta.childObjectProperties).length ?
         types.model(meta.childObjectProperties) :
       types.frozen;
     },
