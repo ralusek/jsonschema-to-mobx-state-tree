@@ -1,0 +1,25 @@
+{
+  "name": "jsonschema-to-mobx-state-tree",
+  "version": "1.0.0",
+  "description": "Utility for converting from jsonschema standard to Mobx State Tree types.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mobx",
+    "state",
+    "tree",
+    "conversion",
+    "json",
+    "schema",
+    "jsonschema",
+    "mst",
+    "types"
+  ],
+  "author": "Tomas Savigliano",
+  "license": "ISC",
+  "dependencies": {
+    "jsonschema-nodewalker": "^1.0.4"
+  }
+}
