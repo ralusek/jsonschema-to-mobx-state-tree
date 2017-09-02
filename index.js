@@ -16,6 +16,8 @@ module.exports = (types) => {
     },
     object: (node, meta) => {
       return Object.keys(meta.childObjectProperties).length ?
+        node.title ?
+          types.model(node.title, meta.childObjectProperties) :
         types.model(meta.childObjectProperties) :
       types.frozen;
     },
@@ -25,7 +27,8 @@ module.exports = (types) => {
   return (schema = {}, onNode) => walkNodes(schema, (node, meta) => {
     const type = TYPE_MAP[node.type](node, meta);
     const hasDefault = node.default !== undefined;
-    const result = (!meta.isRequired || hasDefault) ?
+    const isRequired = meta.isRequired || !meta.lineage;
+    const result = (!isRequired || hasDefault) ?
       hasDefault ?
         types.optional(type, node.default) :
       types.maybe(type) :

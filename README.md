@@ -1,13 +1,18 @@
-Utility for converting JSON Schema to MobX State Tree types.
+## Utility for converting JSON Schema to MobX State Tree types.
 
 JSON Schema: http://json-schema.org/
+
 MobX State Tree Types: https://github.com/mobxjs/mobx-state-tree#types-overview
+
+
+### Use Case:
 
 Let's say we had an `event` schema that looked like this:
 
 ```javascript
 {
   type: 'object',
+  title: 'Event',
   properties: {
     title: {
       type: 'string'
@@ -38,7 +43,7 @@ Let's say we had an `event` schema that looked like this:
 Should output:
 
 ```javascript
-types.model({
+types.model('Event', {
   title: types.string,
   public: types.optional(type.boolean, false),
   time: types.maybe({
