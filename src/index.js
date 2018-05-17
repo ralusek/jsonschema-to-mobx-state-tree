@@ -5,7 +5,9 @@ const walkNodes = require('jsonschema-nodewalker');
 /**
  *
  */
-module.exports = (types) => {
+module.exports = (types, options = {}) => {
+  const {titleDelimiter = '-'} = options;
+
   const TYPE_MAP = Object.freeze({
     boolean: (node, meta) => types.boolean,
     number: (node, meta) => types.number,
@@ -15,9 +17,10 @@ module.exports = (types) => {
       return types.string;
     },
     object: (node, meta) => {
+      const title = node.title && formatTitle(node.title, {titleDelimiter});
       return Object.keys(meta.childObjectProperties).length ?
-        node.title ?
-          types.model(node.title, meta.childObjectProperties) :
+        title ?
+          types.model(title, meta.childObjectProperties) :
         types.model(meta.childObjectProperties) :
       types.frozen;
     },
@@ -36,3 +39,11 @@ module.exports = (types) => {
     return onNode ? onNode(result, {node, meta, typeMap: TYPE_MAP}) : result;
   });
 };
+
+
+/**
+ *
+ */
+function formatTitle(title, {titleDelimiter}) {
+  return title.replace ? title.replace(/\s+/g, titleDelimiter) : title;
+}

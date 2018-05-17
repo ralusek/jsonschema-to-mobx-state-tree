@@ -2,9 +2,14 @@
   "name": "jsonschema-to-mobx-state-tree",
   "version": "1.0.2",
   "description": "Utility for converting from jsonschema standard to Mobx State Tree types.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "babel --presets es2015,stage-0 -d lib/ src/",
+    "prepublish": "npm run compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ralusek/jsonschema-to-mobx-state-tree"
   },
   "keywords": [
     "mobx",
@@ -15,11 +20,20 @@
     "schema",
     "jsonschema",
     "mst",
-    "types"
+    "types",
+    "mobx-state-tree",
+    "json-schema"
   ],
-  "author": "Tomas Savigliano",
-  "license": "ISC",
+  "author": {
+    "name": "Tomas Savigliano"
+  },
+  "license": "MIT",
   "dependencies": {
-    "jsonschema-nodewalker": "^1.0.4"
+    "jsonschema-nodewalker": "1.0.4"
+  },
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-stage-0": "6.24.1"
   }
 }
