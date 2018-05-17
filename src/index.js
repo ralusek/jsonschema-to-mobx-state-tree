@@ -6,7 +6,10 @@ const walkNodes = require('jsonschema-nodewalker');
  *
  */
 module.exports = (types, options = {}) => {
-  const {titleDelimiter = '-'} = options;
+  const {
+    titleDelimiter = '-',
+    formatTitle = _formatTitle
+  } = options;
 
   const TYPE_MAP = Object.freeze({
     boolean: (node, meta) => types.boolean,
@@ -44,6 +47,6 @@ module.exports = (types, options = {}) => {
 /**
  *
  */
-function formatTitle(title, {titleDelimiter}) {
+function _formatTitle(title, {titleDelimiter}) {
   return title.replace ? title.replace(/\s+/g, titleDelimiter) : title;
 }
