@@ -25,7 +25,7 @@ module.exports = (types, options = {}) => {
         title ?
           types.model(title, meta.childObjectProperties) :
         types.model(meta.childObjectProperties) :
-      types.frozen;
+      typeof types.frozen === 'function' ? types.frozen() : types.frozen;
     },
     array: (node, meta) => types.array(meta.childArrayItem)
   });
